@@ -89,6 +89,97 @@
     The composition is also a way to achieve Association. The composition represents the relationship where one object contains other objects as a part of its state. There is a strong relationship between the containing object and the dependent object. It is the state where containing objects do not have an independent existence. If you delete the parent object, all the child objects will be deleted automatically.
 
 
+#### Exception Handling
+
+![image](img/ExceptionHandling.png)
+
+- **What is an Exception?**
+
+    An exception is an unwanted or unexpected event, which occurs during the execution of a program i.e at run time, that disrupts the normal flow of the program’s instructions.
+
+- **Error vs Exception**
+
+    - Error: An Error indicates serious problem that a reasonable application should not try to catch.
+    - Exception: Exception indicates conditions that a reasonable application might try to catch.
+- **Types of Java Exceptions**
+    
+    There are mainly two types of exceptions: checked and unchecked. Here, an error is considered as the unchecked exception. According to Oracle, there are three types of exceptions:
+
+    - Checked Exception
+    - Unchecked Exception
+    - Error
+
+
+        1) Checked Exception
+
+            The classes which directly inherit Throwable class except RuntimeException and Error are known as checked exceptions e.g. IOException, SQLException etc. Checked exceptions are checked at compile-time.
+
+        2) Unchecked Exception
+
+            The classes which inherit RuntimeException are known as unchecked exceptions e.g. ArithmeticException, NullPointerException, ArrayIndexOutOfBoundsException etc. Unchecked exceptions are not checked at compile-time, but they are checked at runtime.
+
+        3) Error
+
+            Error is irrecoverable e.g. OutOfMemoryError, VirtualMachineError, AssertionError etc.
+
+- **There are 5 keywords which are used in handling exceptions in Java.**
+
+    |Keyword|	Description|
+    |-------|--------------|
+    |try	|The "try" keyword is used to specify a block where we should place exception code. The try block must be followed by either catch or finally. It means, we can't use try block alone.|
+    |catch	|The "catch" block is used to handle the exception. It must be preceded by try block which means we can't use catch block alone. It can be followed by finally block later.|
+    |finally|	The "finally" block is used to execute the important code of the program. It is executed whether an exception is handled or not.|
+    |throw	|The "throw" keyword is used to throw an exception.|
+    |throws	|The "throws" keyword is used to declare exceptions. It doesn't throw an exception. It specifies that there may occur an exception in the method. It is always used with method signature.|
+
+    ````java
+    public class JavaExceptionExample{  
+    public static void main(String args[]){  
+    try{  
+        //code that may raise exception  
+        int data=100/0;  
+    }catch(ArithmeticException e){System.out.println(e);}  
+    //rest code of the program   
+    System.out.println("rest of the code...");  
+    }  
+    }  
+    ````
+
+    - code snippet which will generate exceptions
+
+    ````java
+        int a=50/0;//ArithmeticException  
+
+        String s=null;  
+        System.out.println(s.length());//NullPointerException  
+
+        String s="abc";  
+        int i=Integer.parseInt(s);//NumberFormatException  
+
+        int a[]=new int[5];  
+        a[10]=50; //ArrayIndexOutOfBoundsException  
+    ````
+
+    ````java
+    public class MultipleCatchBlock1 {  
+        public static void main(String[] args) {  
+            try{    
+                int a[]=new int[5];    
+                a[5]=30/0;    
+            }catch(ArithmeticException e){  
+                System.out.println("Arithmetic Exception occurs");  
+            }catch(ArrayIndexOutOfBoundsException e){  
+                System.out.println("ArrayIndexOutOfBounds Exception occurs");  
+            }catch(Exception e){  
+                System.out.println("Parent Exception occurs");  
+            }             
+            System.out.println("rest of the code");    
+        }  
+    }  
+    ````
+
+
+
 
 #### Comparable vs Comparator in Java
 
