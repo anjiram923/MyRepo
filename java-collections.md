@@ -467,3 +467,282 @@ Increases program speed and quality: Increases performance by providing high-per
     - **HashSet:** If you don’t want to maintain insertion order but want to store unique objects. 
     - **LinkedHashSet:** If you want to maintain the insertion order of elements then you can use LinkedHashSet. 
     - **TreeSet:** If you want to sort the elements according to some Comparator then use TreeSet.
+
+
+
+#### Map Interface
+- A map contains values on the basis of key, i.e. key and value pair. Each key and value pair is known as an entry. A Map contains unique keys. A Map is useful if you have to search, update or delete elements on the basis of a key.
+
+- A Map doesn't allow duplicate keys, but you can have duplicate values. HashMap and LinkedHashMap allow null keys and values, but TreeMap doesn't allow any null key or value.
+
+- A Map can't be traversed, so you need to convert it into Set using keySet() or entrySet() method.
+
+|Class|	Description|
+|-----|------------|
+|HashMap|	HashMap is the implementation of Map, but it doesn't maintain any order.|
+|LinkedHashMap|	LinkedHashMap is the implementation of Map. It inherits HashMap class. It maintains insertion order.|
+|TreeMap|	TreeMap is the implementation of Map and SortedMap. It maintains ascending order.|
+
+
+#### Map.Entry Interface
+
+- Entry is the subinterface of Map. So we will be accessed it by Map.Entry name. It returns a collection-view of the map, whose elements are of this class. It provides methods to get key and value.
+
+#### HashMap
+- **HashMap** is similar to the HashTable, but it is unsynchronized. **It allows to store the null keys as well, but there should be only one null key object and there can be any number of null values.**  This class makes no guarantees as to the order of the map. To use this class and its methods, you need to import java.util.HashMap package or its superclass.
+
+    ````java
+    // Java program to illustrate
+    // Java.util.HashMap
+    
+    import java.util.HashMap;
+    
+    public class GFG {
+        
+        public static void main(String[] args)
+        {
+            // Create an empty hash map
+            HashMap<String, Integer> map = new HashMap<>();
+    
+            // Add elements to the map
+            map.put("vishal", 10);
+            map.put("sachin", 30);
+            map.put("vaibhav", 20);
+    
+            // Print size and content
+            System.out.println("Size of map is:- "
+                            + map.size());
+            System.out.println(map);
+    
+            // Check if a key is present and if
+            // present, print value
+            if (map.containsKey("vishal")) {
+                Integer a = map.get("vishal");
+                System.out.println("value for key"
+                                + " \"vishal\" is:- " + a);
+            }
+        }
+    }
+    Output
+    Size of map is:- 3
+    {vaibhav=20, vishal=10, sachin=30}
+    value for key "vishal" is:- 10
+    ````
+
+
+#### LinkedMap
+
+- The **LinkedHashMap** is just like HashMap with an additional feature of maintaining an order of elements inserted into it. HashMap provided the advantage of quick insertion, search, and deletion but it never maintained the track and **order of insertion which the LinkedHashMap provides** where the elements can be accessed in their insertion order. 
+
+- Important Features of a LinkedHashMap:
+
+    - A LinkedHashMap contains values based on the key. It implements the Map interface and extends the HashMap class.
+    - It contains only unique elements.
+    - It may have one null key and multiple null values.
+    - It is non-synchronized.
+    - It is the same as HashMap with an additional feature that it maintains insertion order. For example, when we run the code with a HashMap, we get a different order of elements.
+
+    ````java
+    // Java program to demonstrate working of LinkedHashMap
+    
+    import java.util.*;
+    
+    public class LinkedHashMapExample {
+        
+        public static void main(String a[])
+        {
+            // create an instance of LinkedHashMap
+            LinkedHashMap<String, String> lhm
+                = new LinkedHashMap<String, String>();
+    
+            // Add mappings using put method
+            lhm.put("one", "practice.geeksforgeeks.org");
+            lhm.put("two", "code.geeksforgeeks.org");
+            lhm.put("four", "quiz.geeksforgeeks.org");
+    
+            // It prints the elements in same order
+            // as they were inserted
+            System.out.println(lhm);
+    
+            System.out.println("Getting value for key 'one': "
+                            + lhm.get("one"));
+    
+            System.out.println("Size of the map: "
+                            + lhm.size());
+    
+            System.out.println("Is map empty? "
+                            + lhm.isEmpty());
+    
+            System.out.println("Contains key 'two'? "
+                            + lhm.containsKey("two"));
+    
+            System.out.println(
+                "Contains value 'practice.geeks"
+                + "forgeeks.org'? "
+                + lhm.containsValue("practice"
+                                    + ".geeksforgeeks.org"));
+    
+            System.out.println("delete element 'one': "
+                            + lhm.remove("one"));
+    
+            // print mappings to the console
+            System.out.println("Mappings of LinkedHashMap : "
+                            + lhm);
+        }
+    }
+    /*
+    Output
+    {one=practice.geeksforgeeks.org, two=code.geeksforgeeks.org, four=quiz.geeksforgeeks.org}
+    Getting value for key 'one': practice.geeksforgeeks.org
+    Size of the map: 3
+    Is map empty? false
+    Contains key 'two'? true
+    Contains value 'practice.geeksforgeeks.org'? true
+    delete element 'one': practice.geeksforgeeks.org
+    Mappings of LinkedHashMap : {two=code.geeksforgeeks.org, four=quiz.geeksforgeeks.org}
+    */
+    ````
+
+
+#### TreeMap
+- The **TreeMap** in Java is used to **implement Map interface and NavigableMap along with the AbstractMap Class. The map is sorted according to the natural ordering of its keys, or by a Comparator provided at map creation time, depending on which constructor is used.** This proves to be an efficient way of sorting and storing the key-value pairs. The storing order maintained by the treemap must be consistent with equals just like any other sorted map, irrespective of the explicit comparators. The treemap implementation is not synchronized in the sense that if a map is accessed by multiple threads, concurrently and at least one of the threads modifies the map structurally, it must be synchronized externally.
+
+
+    ````java
+    // Java code to show creation, insertion,
+    // searching, and traversal in a TreeMap
+    
+    import java.util.*;
+    import java.util.concurrent.*;
+    
+    public class TreeMapImplementation {
+    
+        // Declaring a TreeMap
+        static TreeMap<Integer, String> tree_map;
+    
+        // Function to create TreeMap
+        static void create()
+        {
+            // Creating an empty TreeMap
+            tree_map
+                = new TreeMap<Integer, String>();
+    
+            System.out.println(
+                "TreeMap successfully"
+                + " created");
+        }
+    
+        // Function to Insert values in
+        // the TreeMap
+        static void insert()
+        {
+            // Mapping string values to int keys
+            tree_map.put(10, "Geeks");
+            tree_map.put(15, "4");
+            tree_map.put(20, "Geeks");
+            tree_map.put(25, "Welcomes");
+            tree_map.put(30, "You");
+    
+            System.out.println(
+                "\nElements successfully"
+                + " inserted in the TreeMap");
+        }
+    
+        // Function to search a key in TreeMap
+        static void search(int key)
+        {
+    
+            // Checking for the key
+            System.out.println(
+                "\nIs key \""
+                + key + "\" present? "
+                + tree_map.containsKey(key));
+        }
+    
+        // Function to search a value in TreeMap
+        static void search(String value)
+        {
+    
+            // Checking for the value
+            System.out.println(
+                "\nIs value \""
+                + value + "\" present? "
+                + tree_map.containsValue(value));
+        }
+    
+        // Function to display the elements in TreeMap
+        static void display()
+        {
+            // Displaying the TreeMap
+            System.out.println(
+                "\nDisplaying the TreeMap:");
+    
+            System.out.println(
+                "TreeMap: " + tree_map);
+        }
+    
+        // Function to traverse TreeMap
+        static void traverse()
+        {
+            System.out.println("\nTraversing the TreeMap:");
+            for (Map.Entry<Integer, String> e : tree_map.entrySet())
+                System.out.println(e.getKey()
+                                + " "
+                                + e.getValue());
+        }
+    
+        // Driver code
+        public static void main(String[] args)
+        {
+    
+            // Creating the TreeMap
+            create();
+    
+            // Inserting values in the TreeMap
+            insert();
+    
+            // Search key "50" in the TreeMap
+            search(50);
+    
+            // Search value "Geeks" in the TreeMap
+            search("Geeks");
+    
+            // Display the elements in TreeMap
+            display();
+    
+            // Traverse the TreeMap
+            traverse();
+        }
+    }
+    /*
+    Output:
+    TreeMap successfully created
+    Elements successfully inserted in the TreeMap
+    Is key "50" present? false
+    Is value "Geeks" present? true
+    Displaying the TreeMap:
+    TreeMap: {10=Geeks, 15=4, 20=Geeks, 25=Welcomes, 30=You}
+    Traversing the TreeMap:
+    10 Geeks
+    15 4
+    20 Geeks
+    25 Welcomes
+    30 You
+    */
+    ````
+
+#### hashmap vs linkedhashmap vs treemap
+
+|Property|	HashMap|	TreeMap|	LinkedHashMap|
+|--------|---------|-----------|-----------------|
+|Iteration Order|	no guaranteed order, will remain constant over time|	sorted according to the natural ordering|	insertion-order|
+|Get / put / remove / containsKey|	O(1)|	O(log(n))|	O(1)|
+|Interfaces|	Map|	NavigableMap, Map, SortedMap|	Map|
+|Null values/keys|	allowed|	only values|	allowed|
+|Fail-fast behavior|	Fail-fast behavior of an iterator cannot be guaranteed, impossible to make any hard guarantees in the presence of unsynchronized concurrent modification	|Fail-fast behavior of an iterator cannot be guaranteed, impossible to make any hard guarantees in the presence of unsynchronized concurrent modification	|Fail-fast behavior of an iterator cannot be guaranteed, impossible to make any hard guarantees in the presence of unsynchronized concurrent modification|
+|Implementation|	buckets|	Red-Black Tree|	double-linked buckets|
+|Is synchronized|	implementation is not synchronized|	implementation is not synchronized|	implementation is not synchronized|
+
+
+
+
